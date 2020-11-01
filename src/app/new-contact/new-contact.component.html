@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="col-md-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Nouveau produit</div>
+      <div class="panel-body">
+        <form #f="ngForm" (ngSubmit)="onSaveContact(f.value)">
+          <div class="form-group">
+            <label class="control-label">Nom</label>
+            <input type="text" name="nom" class="form-control" ngModel placeholder="Nom">
+          </div>
+          <div class="form-group">
+            <label class="control-label">Prénom</label>
+            <input type="text" name="prenom" class="form-control" ngModel placeholder="Prénom">
+          </div>
+          <div class="form-group">
+            <label class="control-label">Date naissance</label>
+            <input type="text" name="date_naissance" class="form-control" ngModel placeholder="Date de naissance">
+          </div>
+          <div class="form-group">
+            <label class="control-label">Email</label>
+            <input type="text" name="email" class="form-control" ngModel placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label class="control-label">Téléphone</label>
+            <input type="text" name="telephone" class="form-control" ngModel placeholder="Téléphone">
+          </div>
+          <div class="form-group">
+            <label class="control-label">Photo</label>
+            <input type="file" name="photo" class="form-control" ngModel>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

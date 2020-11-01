@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="col-md-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Nouveau contact</div>
+      <div class="panel-body">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Nouveau</button>
+
+       <!--
+        <div class="form-group">
+          <label class="control-label">Mot clé</label>
+          <input type="text" [(ngModel)]="motCle">
+          <button class="btn btn-info" (click)="chercher()"><span class="glyphicon glyphicon-search"></span></button>
+        </div>
+-->
+
+        <form #f="ngForm" (ngSubmit)="chercher(f.value)" class="col-md-5">
+          <div class="form-group">
+            <label>Keyword : </label>
+            <input type="text" name="keyword" ngModel>
+            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>Chercher</button>
+          </div>
+        </form>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>N°</th><th>Nom</th><th>Prénom</th><th>Date de naissance</th>
+              <th>Email</th><th>Téléphone</th><th>Photo</th><th>Option</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="listeContacts">
+            <tr *ngFor="let c of listeContacts._embedded.contacts">
+              <td>{{c.id}}</td>
+              <td>{{c.nom}}</td>
+              <td>{{c.prenom}} </td>
+              <td>{{c.date_naissance}}</td>
+              <td>{{c.email}}</td>
+              <td>{{c.tel}}</td>
+              <td>{{c.photo}}</td>
+              <td>
+                <a class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span></a> &nbsp;
+                <a class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ul *ngIf="pages" class="nav nav-pills">
+          <li [ngClass]="i==currentPage?'active cursor':'cursor'" *ngFor="let p of pages; let i = index">
+            <a (click)="onPageContact(i)"> {{i+1}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form #f="ngForm" (ngSubmit)="onSaveContact(f.value)">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Modal Header</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="control-label">Nom</label>
+              <input type="text" name="nom" class="form-control" ngModel placeholder="Nom">
+            </div>
+            <div class="form-group">
+              <label class="control-label">Prénom</label>
+              <input type="text" name="prenom" class="form-control" ngModel placeholder="Prénom">
+            </div>
+            <div class="form-group">
+              <label class="control-label">Date naissance</label>
+              <input type="text" name="date_naissance" class="form-control" ngModel placeholder="Date de naissance">
+            </div>
+            <div class="form-group">
+              <label class="control-label">Email</label>
+              <input type="text" name="email" class="form-control" ngModel placeholder="Email">
+            </div>
+            <div class="form-group">
+              <label class="control-label">Téléphone</label>
+              <input type="text" name="tel" class="form-control" ngModel placeholder="Téléphone">
+            </div>
+            <div class="form-group">
+              <label class="control-label">Photo</label>
+              <input type="file" name="photo" class="form-control" ngModel>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+
